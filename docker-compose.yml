@@ -1,0 +1,52 @@
+services:
+  eureka-server:
+#    build:
+#      context: ./discoveryserver
+#      dockerfile: Dockerfile
+    container_name: discovery-server
+    ports:
+      - "8083:8083"
+    networks:
+      - microservices-network
+    image: vaibhavrc1/docker-school-app-discovery-server:v1.0
+  school-service:
+#    build:
+#      context: ./schoolservice
+#      dockerfile: Dockerfile
+    container_name: school-service
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+    image: vaibhavrc1/docker-school-app-school-service:v1.0
+  student-service:
+#    build:
+#      context: ./studentservice
+#      dockerfile: Dockerfile
+    container_name: studentservice
+    ports:
+      - "8082:8082"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+    image: vaibhavrc1/docker-school-app-student-service:v1.0
+  api-gateway:
+#    build:
+#      context: ./api-gateway
+#      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+    image: vaibhavrc1/docker-school-app-api-gateway:v1.0
+networks:
+  microservices-network:
+    driver: bridge
+volumes:
+  db-data:
