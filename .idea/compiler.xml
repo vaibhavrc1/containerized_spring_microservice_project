@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
+        <module name="caching" />
         <module name="discoveryserver" />
       </profile>
       <profile name="Annotation profile for studentservice" enabled="true">
@@ -28,6 +29,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
+      <module name="caching" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="schoolservive" options="-parameters" />
       <module name="schoolsystem" options="-parameters" />
